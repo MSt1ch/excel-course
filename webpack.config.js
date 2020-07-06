@@ -35,10 +35,12 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', '.scss'],
         alias: {
             '@': path.resolve(__dirname, 'src'),
             '@core': path.resolve(__dirname, 'src/core'),
+            'fonts': path.resolve(__dirname, 'src/fonts'),
+            'material-icons': path.resolve(__dirname, '../node_modules/material-design-icons/iconfont/material-icons.css'),
         }
     },
     devtool: isDev ? 'source-map' : false,
@@ -78,19 +80,29 @@ module.exports = {
                         }
                     },
                     'css-loader',
-                    'sass-loader'
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            webpackImporter: true,
+                        }
+                    }
                 ],
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: jsLoader(),
-                loader: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'fonts/[name].[ext]',
+                        },
+                    },
+                ]
             }
         ],
     },
