@@ -14,7 +14,8 @@ const jsLoader = () => {
         {
             loader: 'babel-loader',
             options: {
-                presets: ['@babel/preset-env']
+                presets: ['@babel/preset-env'],
+                plugins: ['@babel/plugin-proposal-class-properties']
             }
         }
     ];
@@ -40,7 +41,6 @@ module.exports = {
             '@': path.resolve(__dirname, 'src'),
             '@core': path.resolve(__dirname, 'src/core'),
             'fonts': path.resolve(__dirname, 'src/fonts'),
-            'material-icons': path.resolve(__dirname, '../node_modules/material-design-icons/iconfont/material-icons.css'),
         }
     },
     devtool: isDev ? 'source-map' : false,
