@@ -28,7 +28,6 @@ class Dom {
 
     clear() {
         this.html('');
-
         return this;
     }
 

@@ -50,3 +50,11 @@ export function debounce(fn, ms) {
         timeout = setTimeout(later, ms);
     };
 }
+
+export function clone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+export function preventDefault(event) {
+    event.preventDefault();
+}
